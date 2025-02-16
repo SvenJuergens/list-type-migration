@@ -25,7 +25,7 @@ abstract class AbstractListTypeToCTypeUpdate implements UpgradeWizardInterface
 
     private ConnectionPool $connectionPool;
 
-    public function __construct(ConnectionPool $connectionPool = null)
+    public function __construct(?ConnectionPool $connectionPool = null)
     {
         $this->connectionPool = $connectionPool ?? GeneralUtility::makeInstance(ConnectionPool::class);
         $this->validateRequirements();
