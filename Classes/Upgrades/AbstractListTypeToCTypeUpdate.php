@@ -23,15 +23,11 @@ abstract class AbstractListTypeToCTypeUpdate implements UpgradeWizardInterface
     protected const TABLE_CONTENT = 'tt_content';
     protected const TABLE_BACKEND_USER_GROUPS = 'be_groups';
 
-    private ?ConnectionPool $connectionPool = null;
+    private ConnectionPool $connectionPool;
 
-    public function injectConnectionPool(ConnectionPool $connectionPool): void
+    public function __construct(?ConnectionPool $connectionPool = null)
     {
-        $this->connectionPool = $connectionPool;
-    }
-
-    public function __construct()
-    {
+        $this->connectionPool = $connectionPool ?? GeneralUtility::makeInstance(ConnectionPool::class);
         $this->validateRequirements();
     }
 
